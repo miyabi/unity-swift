@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ExampleCallbackHandler : MonoBehaviour {
+	[SerializeField] private Text textLabel;
 
 	// Use this for initialization
 	void Start () {
@@ -15,5 +17,6 @@ public class ExampleCallbackHandler : MonoBehaviour {
 
     public void OnCallFromSwift(string message) {
     	Debug.Log("OnCallFromSwift is called with message: "  + message);
+    	textLabel.text = message;
     }
 }
