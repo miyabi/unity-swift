@@ -10,7 +10,7 @@ import Foundation
 
 class Example : NSObject {
     static func callUnityMethod(_ message: String) -> Void {
-        // Send message to a specified GameObject.
+        // Call a method on a specified GameObject.
         UnitySwift.sendMessage("CallbackTarget", method: "OnCallFromSwift", message:  message)
     }
     

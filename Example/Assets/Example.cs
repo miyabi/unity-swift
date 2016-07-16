@@ -7,8 +7,8 @@ public class Example {
     #endif
 
     public static void CallSwiftMethod(string message) {
-	    #if UNITY_IOS && !UNITY_EDITOR
-	    _ex_callSwiftMethod(message);
-    	#endif
+        #if UNITY_IOS && !UNITY_EDITOR
+        _ex_callSwiftMethod(message);
+        #endif
     }
 }
