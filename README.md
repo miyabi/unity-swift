@@ -1,6 +1,6 @@
 # unity-swift
 
-Native plugin and workflow to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
+Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
 ## Downloads
 
@@ -46,7 +46,7 @@ class Example : NSObject {
 }
 ```
 
-#### Step 2: Include "unityswift-Swift.h"[^1] and define C functions to wrap Swift classes in .mm file (Objective-C++).
+#### Step 2: Include "unityswift-Swift.h" and define C functions to wrap Swift classes in .mm file (Objective-C++).
 
 ```objc
 //  Example.mm
@@ -63,11 +63,11 @@ extern "C" {
 }
 ```
 
-[^1]: "unityswift-Swift.h" file name is defined in "Objective-C Generated Interface Header Name" in Build Settings. This setting and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
+-   "unityswift-Swift.h" file name is defined in "Objective-C Generated Interface Header Name" entry in Build Settings. This setting and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
 
 #### Step 3: Create interface class to call exported C functions from C&#x23;.
 
-```chsarp
+```csharp
 // Example.cs
 
 using System.Runtime.InteropServices;
