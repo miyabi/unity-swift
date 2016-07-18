@@ -4,11 +4,20 @@ Native plugin to write native code in [Swift](https://swift.org) for [Unity](htt
 
 ## Downloads
 
+Download unity-swift.unitypackage from link below:
+
+-   [Releases · miyabi/unity-swift](https://github.com/miyabi/unity-swift/releases)
+
 ## Installation
+
+1.  Open your project in Unity.
+2.  Open the downloaded package by double-click or choose Assets menu > Import Package > Custom Package... to import plugin into your project.
+3.  Plugin files are imported into UnitySwift folder.
 
 ## Examples
 
 See Example/Assets/Main/Main.unity and [UIController.cs](./Example/Assets/UIController.cs).  
+See [miyabi/unity-replay-kit-bridge at swift](https://github.com/miyabi/unity-replay-kit-bridge/tree/swift) for an actual native plugin example.
 
 ## Usage
 
