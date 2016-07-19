@@ -17,7 +17,7 @@ Download unity-swift.unitypackage from link below:
 ## Examples
 
 See Example/Assets/Main/Main.unity and [UIController.cs](./Example/Assets/UIController.cs).  
-See [miyabi/unity-replay-kit-bridge at swift](https://github.com/miyabi/unity-replay-kit-bridge/tree/swift) for an actual native plugin example.
+See [unity-replay-kit-bridge/Example/Assets/UnityReplayKitBridge at swift · miyabi/unity-replay-kit-bridge](https://github.com/miyabi/unity-replay-kit-bridge/tree/swift/Example/Assets/UnityReplayKitBridge) for an actual native plugin example.
 
 ## Usage
 
