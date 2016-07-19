@@ -11,7 +11,7 @@ import Foundation
 class Example : NSObject {
     static func callUnityMethod(_ message: String) -> Void {
         // Call a method on a specified GameObject.
-        UnitySwift.sendMessage("CallbackTarget", method: "OnCallFromSwift", message:  message)
+        UnitySendMessage("CallbackTarget", "OnCallFromSwift", message)
     }
     
     static func swiftMethod(_ message: String) -> Void {
