@@ -14,6 +14,6 @@ public class UIController : MonoBehaviour {
     }
 
     public void OnPressCallSwiftMethodButton() {
-    	Example.CallSwiftMethod("Hello, Swift!");
+        Example.CallSwiftMethod("Hello, Swift!");
     }
 }

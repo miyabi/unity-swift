@@ -23,8 +23,9 @@ See [miyabi/unity-replay-kit-bridge at swift](https://github.com/miyabi/unity-re
 
 ### How to call Unity methods
 
-Functions defined in *UnityInterface.h* are exported as static methods in UnitySwift Objective-C class, so you can use them in your Swift codes.  
-(Currentry only some frequently used functions are exported. See the [UnitySwift Class Reference](./reference.md).)
+Unity interface functions are defined in *UnityInterface.h* in Xcode project built by Unity. This header file is imported in *UnitySwift-Bridging-Header.h*, so you can call the functions directly in your Swift codes.  
+
+To call Unity methods, use `UnitySendMessage` function like below:
 
 ```swift
 //  Example.swift
@@ -32,9 +33,9 @@ Functions defined in *UnityInterface.h* are exported as static methods in UnityS
 import Foundation
 
 class Example : NSObject {
-    static func callUnityMethod(_ message: String) -> Void {
+    static func callUnityMethod(_ message: String) {
         // Call a method on a specified GameObject.
-        UnitySwift.sendMessage("CallbackTarget", method: "OnCallFromSwift", message:  message)
+        UnitySendMessage("CallbackTarget", "OnCallFromSwift", message)
     }
 }
 ```
@@ -49,7 +50,7 @@ class Example : NSObject {
 import Foundation
 
 class Example : NSObject {
-    static func swiftMethod(_ message: String) -> Void {
+    static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
     }
 }
@@ -72,8 +73,6 @@ extern "C" {
 }
 ```
 
--   "unityswift-Swift.h" file name is defined in "Objective-C Generated Interface Header Name" entry in Build Settings. This setting and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
-
 #### Step 3: Create interface class to call exported C functions from C&#x23;.
 
 ```csharp
@@ -87,7 +86,8 @@ public class Example {
     private static extern void _ex_callSwiftMethod(string message);
     #endif
 
-    // You can use this method to call Example.swiftMethod() in Example.swift from other C# classes.
+    // Use this method to call Example.swiftMethod() in Example.swift
+    // from other C# classes.
     public static void CallSwiftMethod(string message) {
         #if UNITY_IOS && !UNITY_EDITOR
         _ex_callSwiftMethod(message);
@@ -95,6 +95,14 @@ public class Example {
     }
 }
 ```
+
+#### Step 4: Call the method from your C&#x23; code.
+
+```csharp
+Example.CallSwiftMethod("Hello, Swift!");
+```
+
+The file names of *UnitySwift-Bridging-Header.h* and *unityswift-Swift.h* are defined in "Objective-C Bridging Header" entry and "Objective-C Generated Interface Header Name" entry in Build Settings. These settings and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
 
 ## Requirements
 

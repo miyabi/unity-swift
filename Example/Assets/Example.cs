@@ -6,6 +6,8 @@ public class Example {
     private static extern void _ex_callSwiftMethod(string message);
     #endif
 
+    // Use this method to call Example.swiftMethod() in Example.swift
+    // from other C# classes.
     public static void CallSwiftMethod(string message) {
         #if UNITY_IOS && !UNITY_EDITOR
         _ex_callSwiftMethod(message);
