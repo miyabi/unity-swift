@@ -12,6 +12,7 @@ namespace UnitySwift {
     public static class PostProcessor {
         [PostProcessBuild]
         public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath) {
+            #if UNITY_IOS
             if(buildTarget == BuildTarget.iOS) {
                 // So PBXProject.GetPBXProjectPath returns wrong path, we need to construct path by ourselves instead
                 // var projPath = PBXProject.GetPBXProjectPath(buildPath);
@@ -26,9 +27,11 @@ namespace UnitySwift {
                 proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/UnitySwift/UnitySwift-Bridging-Header.h");
                 proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_INTERFACE_HEADER_NAME", "unityswift-Swift.h");
                 proj.AddBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
+                proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
 
                 proj.WriteToFile(projPath);
             }
+            #endif
         }
     }
 }
