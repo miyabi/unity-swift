@@ -50,7 +50,7 @@ class Example : NSObject {
 import Foundation
 
 class Example : NSObject {
-    static func swiftMethod(_ message: String) {
+    @objc static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
     }
 }
@@ -106,9 +106,9 @@ The file names of *UnitySwift-Bridging-Header.h* and *unityswift-Swift.h* are de
 
 ## Requirements
 
-iOS 7 or later
+iOS 9 or later
 
 ## Compatibility
 
-Unity 5.3.5f1  
-Xcode 7.3.1
+Unity 2019.2.0f1
+Xcode 10.3
