@@ -1,4 +1,6 @@
 # unity-swift
+<img src="https://img.shields.io/badge/ver-2.0.0-blue.svg"></img>
+> Forked from the seemingly abanadoned [miyabi/unity-swift](https://github.com/miyabi/unity-swift)
 
 Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
@@ -6,7 +8,7 @@ Native plugin to write native code in [Swift](https://swift.org) for [Unity](htt
 
 Download unity-swift.unitypackage from link below:
 
--   [Releases · miyabi/unity-swift](https://github.com/miyabi/unity-swift/releases)
+-   [Releases · richardschembri/unity-swift](https://github.com/richardschembri/unity-swift/releases)
 
 ## Installation
 
