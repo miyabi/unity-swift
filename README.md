@@ -1,6 +1,6 @@
 # unity-swift
 <img src="https://img.shields.io/badge/ver-2.0.0-blue.svg"></img>
-> Forked from the seemingly abanadoned [miyabi/unity-swift](https://github.com/miyabi/unity-swift)
+> Forked from the seemingly abandoned [miyabi/unity-swift](https://github.com/miyabi/unity-swift)
 
 Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
