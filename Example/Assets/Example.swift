@@ -14,7 +14,7 @@ class Example : NSObject {
         UnitySendMessage("CallbackTarget", "OnCallFromSwift", message)
     }
     
-    static func swiftMethod(_ message: String) {
+    @objc static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
         
         self.callUnityMethod("Hello, Unity!")

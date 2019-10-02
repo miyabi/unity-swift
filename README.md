@@ -1,4 +1,6 @@
 # unity-swift
+<img src="https://img.shields.io/badge/ver-2.0.0-blue.svg"></img>
+> Forked from the seemingly abandoned [miyabi/unity-swift](https://github.com/miyabi/unity-swift)
 
 Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
@@ -6,7 +8,7 @@ Native plugin to write native code in [Swift](https://swift.org) for [Unity](htt
 
 Download unity-swift.unitypackage from link below:
 
--   [Releases · miyabi/unity-swift](https://github.com/miyabi/unity-swift/releases)
+-   [Releases · richardschembri/unity-swift](https://github.com/richardschembri/unity-swift/releases)
 
 ## Installation
 
@@ -50,7 +52,7 @@ class Example : NSObject {
 import Foundation
 
 class Example : NSObject {
-    static func swiftMethod(_ message: String) {
+    @objc static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
     }
 }
@@ -106,9 +108,9 @@ The file names of *UnitySwift-Bridging-Header.h* and *unityswift-Swift.h* are de
 
 ## Requirements
 
-iOS 7 or later
+iOS 9 or later
 
 ## Compatibility
 
-Unity 5.3.5f1  
-Xcode 7.3.1
+Unity 2019.2.0f1
+Xcode 10.3
