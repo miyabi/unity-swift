@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "unityswift-Swift.h"
+#import <UnityFramework/UnityFramework-Swift.h>
 
 extern "C" {
     void _ex_callSwiftMethod(const char *message) {
