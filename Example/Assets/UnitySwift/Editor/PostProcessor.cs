@@ -24,8 +24,7 @@ namespace UnitySwift {
 
                 //// Configure build settings
                 proj.SetBuildProperty(targetGuid, "ENABLE_BITCODE", "NO");
-                proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/UnitySwift/UnitySwift-Bridging-Header.h");
-                proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_INTERFACE_HEADER_NAME", "unityswift-Swift.h");
+                proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_INTERFACE_HEADER_NAME", "UnityFramework-Swift.h");
                 proj.AddBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
                 proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
 
