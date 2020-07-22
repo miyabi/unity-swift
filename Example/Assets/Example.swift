@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Example : NSObject {
+public class Example : NSObject {
     static func callUnityMethod(_ message: String) {
         let uf = UnityFramework()
         // Call a method on a specified GameObject.
@@ -18,7 +18,7 @@ class Example : NSObject {
             message: message)
     }
     
-    @objc static func swiftMethod(_ message: String) {
+    @objc public static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
         
         self.callUnityMethod("Hello, Unity!")
