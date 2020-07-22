@@ -1,33 +1,116 @@
 # unity-swift
-
-> Forked from [richardschembri/unity-swift](https://github.com/richardschembri/unity-swift)
+<img src="https://img.shields.io/badge/ver-2.0.0-blue.svg"></img>
+> Forked from the seemingly abandoned [miyabi/unity-swift](https://github.com/miyabi/unity-swift)
 
 Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
+## Downloads
+
+Download unity-swift.unitypackage from link below:
+
+-   [Releases · richardschembri/unity-swift](https://github.com/richardschembri/unity-swift/releases)
+
+## Installation
+
+1.  Open your project in Unity.
+2.  Open the downloaded package by double-click or choose Assets menu > Import Package > Custom Package... to import plugin into your project.
+3.  Plugin files are imported into UnitySwift folder.
+
+## Examples
+
+See Example/Assets/Main/Main.unity and [UIController.cs](./Example/Assets/UIController.cs).  
+See [unity-replay-kit-bridge/Example/Assets/UnityReplayKitBridge at swift · miyabi/unity-replay-kit-bridge](https://github.com/miyabi/unity-replay-kit-bridge/tree/swift/Example/Assets/UnityReplayKitBridge) for an actual native plugin example.
+
+## Usage
+
+### How to call Unity methods
+
+Unity interface functions are defined in *UnityInterface.h* in Xcode project built by Unity. This header file is imported in *UnitySwift-Bridging-Header.h*, so you can call the functions directly in your Swift codes.  
+
+To call Unity methods, use `UnitySendMessage` function like below:
+
+```swift
+//  Example.swift
+
+import Foundation
+
+class Example : NSObject {
+    static func callUnityMethod(_ message: String) {
+        // Call a method on a specified GameObject.
+        UnitySendMessage("CallbackTarget", "OnCallFromSwift", message)
+    }
+}
+```
+
+### How to access Swift classes from Unity
+
+#### Step 1: Create your Swift classes.
+
+```swift
+//  Example.swift
+
+import Foundation
+
+class Example : NSObject {
+    @objc static func swiftMethod(_ message: String) {
+        print("\(#function) is called with message: \(message)")
+    }
+}
+```
+
+#### Step 2: Include "unityswift-Swift.h" and define C functions to wrap Swift classes in .mm file (Objective-C++).
+
+```objc
+//  Example.mm
+
+#import <Foundation/Foundation.h>
+#import "unityswift-Swift.h"    // Required
+                                // This header file is generated automatically when Xcode build runs.
+
+extern "C" {
+    void _ex_callSwiftMethod(const char *message) {
+        // You can access Swift classes directly here.
+        [Example swiftMethod:[NSString stringWithUTF8String:message]];
+    }
+}
+```
+
+#### Step 3: Create interface class to call exported C functions from C&#x23;.
+
+```csharp
+// Example.cs
+
+using System.Runtime.InteropServices;
+
+public class Example {
+    #if UNITY_IOS && !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern void _ex_callSwiftMethod(string message);
+    #endif
+
+    // Use this method to call Example.swiftMethod() in Example.swift
+    // from other C# classes.
+    public static void CallSwiftMethod(string message) {
+        #if UNITY_IOS && !UNITY_EDITOR
+        _ex_callSwiftMethod(message);
+        #endif
+    }
+}
+```
+
+#### Step 4: Call the method from your C&#x23; code.
+
+```csharp
+Example.CallSwiftMethod("Hello, Swift!");
+```
+
+The file names of *UnitySwift-Bridging-Header.h* and *unityswift-Swift.h* are defined in "Objective-C Bridging Header" entry and "Objective-C Generated Interface Header Name" entry in Build Settings. These settings and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
+
+## Requirements
+
+iOS 9 or later
+
+## Compatibility
 
 Unity 2019.4.1f1
-
 Xcode 11.5
-
-## You'll need to edit the Xcode project as it comes out of Unity in order for it to build correctly.
-
-### 1. Add your header file to `UnityFramework.h`.
-Import your header file.
-
-<img width="783" alt="スクリーンショット 2020-07-22 18 26 54" src="https://user-images.githubusercontent.com/15327448/88161168-9c4a9080-cc4a-11ea-8c42-f9d2390f193d.png">
-
-### 2. Edit `Unityframework` Build Phases.
-Drag your header file.
-
-<img width="831" alt="スクリーンショット 2020-07-22 18 27 26" src="https://user-images.githubusercontent.com/15327448/88161130-8e950b00-cc4a-11ea-9ee6-ea0510b49852.png">
-
-### Do we have to do this every time?
-As far as I have been able to find out, yes. If there is a simpler way to do this, I would like to hear about it.
-
-## References
- * [Swift iOS native plugins hurdles](https://forum.unity.com/threads/swift-ios-native-plugins-hurdles.802623/#post-5527207)
- * [Problems Building a native plugin for iOS Library with swift in Unity 2019.3](https://forum.unity.com/threads/problems-building-a-native-plugin-for-ios-library-with-swift-in-unity-2019-3.878392/)
-
- ## How to use?
- Please refer to the original fork.
- https://github.com/richardschembri/unity-swift/blob/master/README.md
