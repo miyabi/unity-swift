@@ -1,6 +1,6 @@
 # unity-swift
 
-> Forked from the seemingly abandoned [richardschembri/unity-swift](https://github.com/richardschembri/unity-swift)
+> Forked from [richardschembri/unity-swift](https://github.com/richardschembri/unity-swift)
 
 Native plugin to write native code in [Swift](https://swift.org) for [Unity](http://unity3d.com/).
 
