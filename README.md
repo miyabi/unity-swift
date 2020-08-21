@@ -103,8 +103,6 @@ public class Example {
 Example.CallSwiftMethod("Hello, Swift!");
 ```
 
-"Objective-C Generated Interface Header Name" entry in Build Settings. These settings and other settings about Swift compiler are set automatically by [PostProcesser](./Example/Assets/UnitySwift/Editor/PostProcessor.cs) when the Unity build runs.
-
 ## Requirements
 
 iOS 9 or later
