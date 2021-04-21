@@ -6,7 +6,7 @@ Native plugin to write native code in [Swift](https://swift.org) for [Unity](htt
 
 Download unity-swift.unitypackage from link below:
 
--   [Releases · miyabi/unity-swift](https://github.com/miyabi/unity-swift/releases)
+-   [Releases · richardschembri/unity-swift](https://github.com/richardschembri/unity-swift/releases)
 
 ## Installation
 
