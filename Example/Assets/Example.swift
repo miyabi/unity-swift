@@ -8,13 +8,17 @@
 
 import Foundation
 
-class Example : NSObject {
+public class Example : NSObject {
     static func callUnityMethod(_ message: String) {
+        let uf = UnityFramework.getInstance()
         // Call a method on a specified GameObject.
-        UnitySendMessage("CallbackTarget", "OnCallFromSwift", message)
+        uf?.sendMessageToGO(
+            withName: "CallbackTarget",
+            functionName: "OnCallFromSwift",
+            message: message)
     }
     
-    static func swiftMethod(_ message: String) {
+    @objc public static func swiftMethod(_ message: String) {
         print("\(#function) is called with message: \(message)")
         
         self.callUnityMethod("Hello, Unity!")
